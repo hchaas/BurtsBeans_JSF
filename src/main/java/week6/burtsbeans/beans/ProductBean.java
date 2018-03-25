@@ -12,10 +12,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import week6.burtsbeans.model.Product;
 import week6.burtsbeans.model.ProductService;
 
-/**
- *
- * @author User
- */
 @Named(value = "productBean")
 @SessionScoped
 public class ProductBean implements Serializable {

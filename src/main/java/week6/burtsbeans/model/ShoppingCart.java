@@ -1,36 +1,30 @@
 package week6.burtsbeans.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
 
-    private final int totalProductCount = 0;
-    private final int totalCartCost = 0;
-    private List<Product> ProductsInCart;
+
+    private final List<Product> contents = new ArrayList<>();
     
-    public final void addToCart(Product product){
-        ProductsInCart.add(product);
-        this.setTotalProductCount(product.getProductQuantity());
-        this.setTotalCartCost(product.getPricePerPound());
-    }
-    
-    public final List<Product> getCart(){
-        return ProductsInCart;
+    public List<Product> getContents(){
+        return contents;
     }
 
-    public final void setTotalProductCount(int productCount) {
-        productCount += totalProductCount;
-    }
-    
-    public final void setTotalCartCost(int cost){
-        cost += totalCartCost;
+    public int getItemsInCart(){
+        return contents.size();
     }
 
-    public final int getTotalProductCount() {
-        return totalProductCount;
+    public void add(Product product){
+        contents.add(product);
     }
 
-    public final int getTotalCartCost() {
-        return totalCartCost;
+    public void remove(Product product){
+        contents.remove(product);
+    }
+
+    public void removeAll(){
+        contents.clear();
     }
 }

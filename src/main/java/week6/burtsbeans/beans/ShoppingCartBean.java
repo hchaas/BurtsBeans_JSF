@@ -5,50 +5,38 @@ import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import static javax.management.Query.value;
 import week6.burtsbeans.model.ShoppingCart;
 import week6.burtsbeans.model.ShoppingCartService;
+import week6.burtsbeans.model.Product;
 
-/**
- *
- * @author User
- */
 @Named(value = "shoppingCartBean")
 @SessionScoped
 public class ShoppingCartBean implements Serializable {
 
-    private final ShoppingCartService shoppingCartService;
-    @ManagedProperty(name="shoppingCart", value="")
-    private ShoppingCart shoppingCart;
-    @ManagedProperty(name="cartTotal", value="")
-    private double cartTotal;
-    /**
-     * Creates a new instance of ShoppingCartBean
-     */
+    private final String sessionId;
+    private final ShoppingCart cart;
+    private final ShoppingCartService cartService = new ShoppingCartService();
     
     public ShoppingCartBean() {
-        shoppingCartService = new ShoppingCartService();
-        setShoppingCart(shoppingCartService.getCart());
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        sessionId = facesContext.getExternalContext().getSessionId(true);
+        
+        cart = cartService.getContents(sessionId);
     }
-    
-    public ShoppingCart getShoppingCart(){
-        return shoppingCart;
+
+    public int getItemsInCart(){
+        return cart.getItemsInCart();
     }
-    
-    public double getCartTotal(){
-        return cartTotal;
+
+    public void addToCart(Product product){
+        cart.add(product);
+        cartService.update(sessionId, cart);
     }
-    
-    public void setShoppingCart(ShoppingCart shoppingCart){
-        if(shoppingCart != null){
-            this.shoppingCart = shoppingCart;
-            cartTotal=0;
-        }
-    }
-    
-    public String shoppingCart(){
-        shoppingCart = shoppingCartService.getCart();
-        return "shoppingCart";
+
+    public void deleteFromCart(Product product){
+        cart.remove(product);
     }
     
 }

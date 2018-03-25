@@ -5,39 +5,59 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Product List</title>
         <link href="storefront.css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"/>
-        <title>Burt's Beans Wholesale Coffee</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"/>
     </h:head>
-    <title>Product List</title>
-    <header>
-        <img src="logo.png"/>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.xhtml">Home</a></li>
-            <li><a href="productList.xhtml">Our Beans</a></li>
-            <li><a href="shoppingcart.xhtml">Shopping Cart</a></li>
-        </ul>
-    </nav>
     <h:body>
-        <h:form>
+        <img src="logo.png"/>
+        <nav>
+            <ul>
+                <li><a href="index.xhtml">Home</a></li>
+                <li><a href="productList.xhtml">Our Beans</a></li>
+                <li><a href="shoppingCart.xhtml">Shopping Cart</a></li>
+            </ul>
+        </nav>
+        <h:form styleClass="searchForm">
+            <br/>
+            <div class="container">
+                <h:inputText id="searchString" value="#{productBean.searchString}" alt="Product search">
+                    <f:ajax/>
+                </h:inputText>
+                <h:commandButton value="Search" action="#{productBean.searchProducts}"/>
+            </div>
+        </h:form>
+        <h:form id="form">
             <p:dataTable value="#{productBean.productList}" var="product"
                          rowKey="#{product.productID}" selection="#{productBean.product}"
                          selectionMode="single">
                 <f:ajax event="rowSelect" listener="#{productBean.productDetail}"/>
                 <p:column>
                     <h:outputText value="#{product.productName}"/>
-
                 </p:column>
                 <p:column>
                     <h:outputText value="#{product.productDescription}"/>
                 </p:column>
+                <p:column>
+                    <p:commandButton value="Add" 
+                                     update=":form:cartQuantity"
+                                     actionListener="#{shoppingCartBean.addToCart(product)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Remove"
+                                     update=":form:cartQuantity"
+                                     actionListener="#{shoppingCartBean.deleteFromCart(product)}"/>
+                </p:column>
+
             </p:dataTable>
+            <br/>
+            <div class="container">
+                <h:outputLabel for="cartQuantity" value="Cart:"/>
+                <h:outputText id="cartQuantity" value="#{shoppingCartBean.itemsInCart}"/>
+            </div>
         </h:form>
+
         <footer>
             Copyright &copy; 2018 Burt's Beans Wholesale Coffee<br/>
             <a href="mailto:haleyhaas@burtsbeans.com">haleyhaas@burtsbeans.com</a>
