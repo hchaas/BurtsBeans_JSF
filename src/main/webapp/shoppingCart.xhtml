@@ -25,6 +25,12 @@
             <!--right now this is the same table data as the product list page; will update
             in the future to reflect what's in the shopping cart-->
             
+            <p:dataTable value="#{shoppingCartBean.cart}" var="product"
+                         rowKey="#{product.productID}" selection="#{shoppingCartBean.product}"
+                         selectionMode="single">
+            </p:dataTable>
+            
+            
             <p:dataTable value="#{productBean.productList}" var="product"
                          rowKey="#{product.productID}" selection="#{productBean.product}"
                          selectionMode="single">
