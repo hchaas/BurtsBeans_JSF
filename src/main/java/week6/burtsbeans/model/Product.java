@@ -8,7 +8,7 @@ public class Product {
     private int productQuantity;
     private int pricePerPound;
 
-    public Product(String productID, String productName, String productDescription, int productQuantity, int pricePerPound) {
+    public Product(String productID, String productName, String productDescription, int pricePerPound) {
         this.setProductID(productID);
         this.setProductName(productName);
         this.setProductDescription(productDescription);

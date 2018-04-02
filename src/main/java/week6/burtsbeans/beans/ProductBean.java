@@ -24,7 +24,7 @@ public class ProductBean implements Serializable {
     @ManagedProperty(name = "productList", value = "")
     private List<Product> productList;
 
-    public ProductBean() {
+    public ProductBean() throws Exception {
         setProductList(productService.getAllProducts());
     }
 
@@ -48,7 +48,7 @@ public class ProductBean implements Serializable {
         return productList;
     }
 
-    public String allProducts() {
+    public String allProducts() throws Exception {
         productList = productService.getAllProducts();
         return "productList";
     }
@@ -63,7 +63,7 @@ public class ProductBean implements Serializable {
         return searchString;
     }
     
-    public String searchProducts(){
+    public String searchProducts() throws Exception{
         this.setProductList(productService.findProducts(searchString));
         return "productList";
     }

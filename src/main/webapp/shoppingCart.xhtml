@@ -24,10 +24,10 @@
         <h:form id="form">
             <!--right now this is the same table data as the product list page; will update
             in the future to reflect what's in the shopping cart-->
-            
-           
-            
-            
+
+
+
+
             <p:dataTable value="#{shoppingCartBean.cart.contents}" var="product"
                          rowKey="#{product.productID}" selection="#{productBean.product}"
                          selectionMode="single">
@@ -38,12 +38,17 @@
                 <p:column>
                     <h:outputText value="#{product.productDescription}"/>
                 </p:column>
+                <p:column>
+                    <p:commandButton value="Remove"
+                                     update=":form:cartQuantity"
+                                     actionListener="#{shoppingCartBean.deleteFromCart(product)}"/>
+                </p:column>
 
             </p:dataTable>
             <br/><br/>
             <div class="container">
-            <h:outputLabel for="cartQuantity" value="Cart:"/>
-            <h:outputText id="cartQuantity" value="#{shoppingCartBean.itemsInCart}"/>
+                <h:outputLabel for="cartQuantity" value="Cart:"/>
+                <h:outputText id="cartQuantity" value="#{shoppingCartBean.itemsInCart}"/>
             </div>
         </h:form>
 
