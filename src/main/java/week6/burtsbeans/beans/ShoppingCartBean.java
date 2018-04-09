@@ -1,31 +1,33 @@
 
 package week6.burtsbeans.beans;
 
-import java.io.Serializable;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import static javax.management.Query.value;
+import week6.burtsbeans.model.Product;
 import week6.burtsbeans.model.ShoppingCart;
 import week6.burtsbeans.model.ShoppingCartService;
-import week6.burtsbeans.model.Product;
+import java.io.Serializable;
+import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Named(value = "shoppingCartBean")
-@SessionScoped
+@Component(value = "shoppingCartBean")
+@Scope("session")
 public class ShoppingCartBean implements Serializable {
 
     private final String sessionId;
     private final ShoppingCart cart;
-    private final ShoppingCartService cartService = new ShoppingCartService();
+    private final ShoppingCartService cartService;
     
-    public ShoppingCartBean() {
+    @Autowired
+    public ShoppingCartBean(ShoppingCartService cartService) {
+        this.cartService = cartService;
         FacesContext facesContext = FacesContext.getCurrentInstance();
         sessionId = facesContext.getExternalContext().getSessionId(true);
         
         cart = cartService.getContents(sessionId);
     }
 
+    
     public ShoppingCart getCart(){
         return cart;
     }

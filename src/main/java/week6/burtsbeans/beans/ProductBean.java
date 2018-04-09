@@ -1,31 +1,31 @@
 package week6.burtsbeans.beans;
 
+
+import week6.burtsbeans.model.Product;
+import week6.burtsbeans.model.ProductService;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import week6.burtsbeans.model.Product;
-import week6.burtsbeans.model.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Named(value = "productBean")
-@SessionScoped
+@Component(value = "productBean")
+@Scope("session")
 public class ProductBean implements Serializable {
 
-    @ManagedProperty(name="searchString", value="")
-    private String searchString;
-    private final ProductService productService = new ProductService();
-    @ManagedProperty(name = "product", value = "")
+    private final ProductService productService;
+    
+    private String search;
     private Product product;
-    @ManagedProperty(name = "productList", value = "")
     private List<Product> productList;
 
-    public ProductBean() throws Exception {
-        setProductList(productService.getAllProducts());
+    @Autowired
+    public ProductBean(ProductService productService) throws Exception {
+        this.productService = productService;
     }
 
     public void setProduct(Product product) {
@@ -55,16 +55,16 @@ public class ProductBean implements Serializable {
 
     public void setSearchString(String search){
         if(search != null){
-            searchString = search;
+            this.search = search;
         }
     }
     
     public String getSearchString(){
-        return searchString;
+        return search;
     }
     
     public String searchProducts() throws Exception{
-        this.setProductList(productService.findProducts(searchString));
+        this.setProductList(productService.findProducts(search));
         return "productList";
     }
     
