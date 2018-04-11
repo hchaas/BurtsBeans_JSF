@@ -1,9 +1,11 @@
-package week6.burtsbeans.model;
+package week6.burtsbeans.service;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import week6.burtsbeans.model.ShoppingCart;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ShoppingCartService {    
 
     private static final Map<String, ShoppingCart> contents = new HashMap<>();
@@ -17,6 +19,10 @@ public class ShoppingCartService {
 
     public void update(String sessionId, ShoppingCart cart){
         contents.put(sessionId, cart);
+    }
+    
+    public void delete(String sessionId){
+        contents.remove(sessionId);
     }
 
 }

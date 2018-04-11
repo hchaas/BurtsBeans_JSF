@@ -1,53 +1,72 @@
 
 package week6.burtsbeans.model;
 
-public class Product {
-    private String productID;
-    private String productName;
-    private String productDescription;
-    private int productQuantity;
-    private int pricePerPound;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    public Product(String productID, String productName, String productDescription, int pricePerPound) {
-        this.setProductID(productID);
+@Entity
+public class Product implements Serializable {
+    
+    @Id
+    @GeneratedValue
+    private String id;
+    
+    @Column(name="productname")
+//    private String productID;
+    private String productName;
+    
+    @Column(name="productdescription")
+    private String productDescription;
+    
+    @Column(name="priceperpound")
+    private int pricePerPound;
+    
+    public Product(){
+        
+    }
+
+    public Product(String productName, String productDescription, int pricePerPound) {
         this.setProductName(productName);
         this.setProductDescription(productDescription);
-        this.setProductQuantity(productQuantity);
+//        this.setProductQuantity(productQuantity);
         this.setPricePerPound(pricePerPound);
     }
     
-    public final void setProductID(String productID) throws IllegalArgumentException{
-        if (productID == null || productID.isEmpty()){
+    public void setProductID(String id) throws IllegalArgumentException{
+        if (id == null || id.isEmpty()){
             throw new IllegalArgumentException("Product ID cannot be null or empty.");
         }
-        this.productID = productID;
+        this.id = id;
     }
 
-    public final void setProductName(String productName) throws IllegalArgumentException{
+    public void setProductName(String productName) throws IllegalArgumentException{
         if(productName == null || productName.isEmpty()){
             throw new IllegalArgumentException("Product Name cannot be null or empty.");
         }
         this.productName = productName;
     }
 
-    public final void setProductDescription(String productDescription) throws IllegalArgumentException{
+    public void setProductDescription(String productDescription) throws IllegalArgumentException{
         if(productDescription == null || productDescription.isEmpty()){
             throw new IllegalArgumentException("Product description cannot be null or empty.");
         }
         this.productDescription = productDescription;
     }
 
-    public final void setProductQuantity(int productQuantity) throws IllegalArgumentException{
-        if(productQuantity < 0){
-            throw new IllegalArgumentException("Product quantity cannot be less than zero.");
-        }
-        this.productQuantity = productQuantity;
-    }
+//    public final void setProductQuantity(int productQuantity) throws IllegalArgumentException{
+//        if(productQuantity < 0){
+//            throw new IllegalArgumentException("Product quantity cannot be less than zero.");
+//        }
+//        this.productQuantity = productQuantity;
+//    }
 
-    public final void setPricePerPound(int pricePerPound) {
+    public void setPricePerPound(int pricePerPound) {
         if(pricePerPound < 0){
             throw new IllegalArgumentException("Product price cannot be less than zero.");
-        };
+        }
         this.pricePerPound = pricePerPound;
     }
 
@@ -55,21 +74,21 @@ public class Product {
         return pricePerPound;
     }
     
-    public final String getProductID() {
-        return productID;
+    public String getProductID() {
+        return id;
     }
 
-    public final String getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public final String getProductDescription() {
+    public String getProductDescription() {
         return productDescription;
     }
 
-    public final int getProductQuantity() {
-        return productQuantity;
-    }
+//    public final int getProductQuantity() {
+//        return productQuantity;
+//    }
     
     
 }

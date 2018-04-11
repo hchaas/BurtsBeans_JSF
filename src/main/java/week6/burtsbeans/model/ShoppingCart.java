@@ -1,10 +1,10 @@
 package week6.burtsbeans.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
-
+public class ShoppingCart implements Serializable{
 
     private final List<Product> contents = new ArrayList<>();
     

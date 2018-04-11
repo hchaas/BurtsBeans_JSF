@@ -3,7 +3,7 @@ package week6.burtsbeans.beans;
 
 import week6.burtsbeans.model.Product;
 import week6.burtsbeans.model.ShoppingCart;
-import week6.burtsbeans.model.ShoppingCartService;
+import week6.burtsbeans.service.ShoppingCartService;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;

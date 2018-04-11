@@ -13,18 +13,34 @@
         </script>
     </h:head>
     <h:body>
-            <img src="logo.png"/>
+        <img src="logo.png"/>
         <nav>
             <ul>
-                <li><a href="index.xhtml">Home</a></li>
-                <li><a href="productList.xhtml">Our Beans</a></li>
-                <li><a href="shoppingcart.xhtml">Shopping Cart</a></li>
+                <li>
+                    <h:form>
+                        <h:commandLink action="index.xhtml">Home</h:commandLink>
+                    </h:form>
+                </li>
+                <li>
+                    <h:form>
+                        <h:commandLink action="#{productBean.allProducts()}">Our Beans</h:commandLink>
+                    </h:form>
+                </li>
+                <li>
+                    <h:form>
+                        <h:commandLink action="#{shoppingCartBean.itemsInCart()}">Shopping Cart</h:commandLink>
+                    </h:form>
+                </li>
             </ul>
+
+
+
         </nav>
+
         <main>
-            
+
             <img src="coffeewink.gif" class="center" style="margin-left: 450px"/>
-            
+
 
         </main>
         <footer>

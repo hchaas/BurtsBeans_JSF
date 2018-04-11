@@ -34,7 +34,7 @@
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     <resource-ref>
-        <res-ref-name>jdbc/myDatasource</res-ref-name>
+        <res-ref-name>jdbc/BeansPool</res-ref-name>
         <res-type>javax.sql.ConnectionPoolDataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>

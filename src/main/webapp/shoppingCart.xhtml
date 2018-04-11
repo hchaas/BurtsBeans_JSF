@@ -29,7 +29,7 @@
 
 
             <p:dataTable value="#{shoppingCartBean.cart.contents}" var="product"
-                         rowKey="#{product.productID}" selection="#{productBean.product}"
+                         rowKey="#{product.id}" selection="#{productBean.product}"
                          selectionMode="single">
                 <f:ajax event="rowSelect" listener="#{productBean.productDetail}"/>
                 <p:column>

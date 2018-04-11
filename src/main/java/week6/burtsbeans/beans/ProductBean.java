@@ -2,7 +2,7 @@ package week6.burtsbeans.beans;
 
 
 import week6.burtsbeans.model.Product;
-import week6.burtsbeans.model.ProductService;
+import week6.burtsbeans.service.ProductService;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;

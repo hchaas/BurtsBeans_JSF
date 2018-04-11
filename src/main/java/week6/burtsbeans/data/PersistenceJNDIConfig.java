@@ -30,7 +30,7 @@ public class PersistenceJNDIConfig {
         emf.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
         emf.setPackagesToScan("week6.burtsbeans");
         //what is this?
-        emf.setPersistenceUnitName("");
+        emf.setPersistenceUnitName("burtsbeans-pu");
         emf.setLoadTimeWeaver(new ReflectiveLoadTimeWeaver());
 
         Properties properties = new Properties();
@@ -45,7 +45,7 @@ public class PersistenceJNDIConfig {
     
     @Bean
     public DataSource dataSource() throws NamingException{
-        return(DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/BurtsBeans");
+        return(DataSource) new JndiTemplate().lookup("java:comp/env/jdbc/myBeans");
     }
     
     @Bean
