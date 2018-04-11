@@ -8,8 +8,8 @@
     <property name="URL" value="jdbc:derby://localhost:1527/BurtsBeans"/>
     <property name="serverName" value="localhost"/>
     <property name="PortNumber" value="1527"/>
-    <property name="DatabaseName" value="BurtsBeans"/>
-    <property name="User" value="hhaas"/>
-    <property name="Password" value="hhaas"/>
+    <property name="DatabaseName" value="BurtsBeans2"/>
+    <property name="User" value="app"/>
+    <property name="Password" value="app"/>
   </jdbc-connection-pool>
 </resources>

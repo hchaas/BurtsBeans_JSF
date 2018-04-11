@@ -22,7 +22,7 @@
         <h:form styleClass="searchForm">
             <br/>
             <div class="container">
-                <h:inputText id="search" value="#{productBean.search}" alt="Product search">
+                <h:inputText id="search" value="#{productBean.setSearchString(search)}" alt="Product search">
                     <f:ajax/>
                 </h:inputText>
                 <h:commandButton value="Search" action="#{productBean.searchProducts}"/>
@@ -30,7 +30,7 @@
         </h:form>
         <h:form id="form">
             <p:dataTable value="#{productBean.productList}" var="product"
-                         rowKey="#{product.id}" selection="#{productBean.product}"
+                         rowKey="#{product.productID}" selection="#{productBean.product}"
                          selectionMode="single">
                 <f:ajax event="rowSelect" listener="#{productBean.productDetail}"/>
                 <p:column>

@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name="products")
 public class Product implements Serializable {
     
     @Id
     @GeneratedValue
-    private String id;
+    private String productID;
     
     @Column(name="productname")
 //    private String productID;
@@ -35,11 +35,11 @@ public class Product implements Serializable {
         this.setPricePerPound(pricePerPound);
     }
     
-    public void setProductID(String id) throws IllegalArgumentException{
-        if (id == null || id.isEmpty()){
+    public void setProductID(String productID) throws IllegalArgumentException{
+        if (productID == null || productID.isEmpty()){
             throw new IllegalArgumentException("Product ID cannot be null or empty.");
         }
-        this.id = id;
+        this.productID = productID;
     }
 
     public void setProductName(String productName) throws IllegalArgumentException{
@@ -75,7 +75,7 @@ public class Product implements Serializable {
     }
     
     public String getProductID() {
-        return id;
+        return productID;
     }
 
     public String getProductName() {
