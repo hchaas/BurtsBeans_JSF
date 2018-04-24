@@ -50,8 +50,8 @@ public class PersistenceJDBCConfig {
         BasicDataSource datasource = new BasicDataSource();
         datasource.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
         datasource.setUrl("jdbc:derby://localhost:1527/BurtsBeans2");
-        datasource.setUsername("APP");
-        datasource.setPassword("APP");
+        datasource.setUsername("app");
+        datasource.setPassword("app");
         return datasource;
     }
     
