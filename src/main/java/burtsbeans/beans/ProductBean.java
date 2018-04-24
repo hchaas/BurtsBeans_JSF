@@ -1,6 +1,5 @@
 package burtsbeans.beans;
 
-
 import burtsbeans.model.Product;
 import burtsbeans.service.ProductService;
 import java.io.IOException;
