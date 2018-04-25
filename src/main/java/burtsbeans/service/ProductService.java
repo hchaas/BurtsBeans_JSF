@@ -34,4 +34,16 @@ public class ProductService {
     public List<Product> getAllProducts() throws Exception {
         return productDAO.findAll();
     }
+    
+    public Product createProduct(Product product){
+        return productDAO.save(product);
+    }
+    
+    public Product updateProduct(Product product){
+        return productDAO.save(product);
+    }
+    
+    public void deleteProduct(String id){
+        productDAO.deleteById(id);
+    }
 }

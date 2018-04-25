@@ -1,17 +1,21 @@
 
 package burtsbeans.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name="products")
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
     
     @Id
-    @GeneratedValue
+    @GeneratedValue (generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String productID;
     
     @Column(name="productname")
